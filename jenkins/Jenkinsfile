@@ -1,16 +1,30 @@
-node {
-
-  stage 'Checkout'
-  //git 'https://github.com/kulinski/jenkins-docker-maven-example.git'
-  // shortcut to checkout from where this Jenkinsfile is hosted
-  checkout scm
-
-  stage 'Build and Test'
-  // Build using a plain docker container, not our local Dockerfile
-  def mvnContainer = docker.image('jimschubert/8-jdk-alpine-mvn')
-  mvnContainer.inside('-v /m2repo:/m2repo') {
-
-      // Build with maven settings.xml file that specs the local Maven repo.
-      sh 'mvn -B -s settings.xml package'
-   }
+pipeline {
+    node {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+    }
 }
