@@ -20,7 +20,6 @@ pipeline {
                 -Dsonar.host.url=http://192.168.99.102:32382/sonar \
                 -Dsonar.login=7f7b85e4384f58e7e173fafec82a02e70f31f3f5 \
                 -Dsonar.projectVersion=$BUILD_TAG \
-                -Dsonar.organization=nrkno-utvikling \
                 -Dsonar.analysis.buildNumber=$BUILD_NUMBER \
                 -Dsonar.analysis.pipeline=$BUILD_NUMBER \
                 -Dsonar.analysis.sha1=$GIT_COMMIT \
