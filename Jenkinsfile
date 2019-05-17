@@ -3,13 +3,6 @@
 pipeline {
   agent any
 
-    properties([
-            // Keep only the last 10 build to preserve space
-            buildDiscarder(logRotator(numToKeepStr: '10')),
-            // Don't run concurrent builds for a branch, because they use the same workspace directory
-            disableConcurrentBuilds()
-    ])
-
     def kubeConsultBuildLib = libraryFromLocalRepo().com.kubeconsulent.buildlib
 
     def mvn = kubeConsultBuildLib.MavenInDocker.new(this, "3.5.0-jdk-8")
