@@ -35,6 +35,14 @@ node('docker') {
 
   Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
 
+  Git git = new Git(this)
+
+stage('Checkout') {
+  git = git.repositoryUrl()
+  /* Don't remove folders starting in "." like .m2 (maven), .npm, .cache, .local (bower), etc. */
+  git.clean('".*/"')
+}
+
   stage('Build') {
     mvn 'clean install'
   }
