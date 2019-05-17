@@ -32,7 +32,6 @@
 node('docker') {
 
   @Library('kubeconsult-jenkins-lib') _
-  import com.kubeconsult.buildlib.*
 
   Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
 
