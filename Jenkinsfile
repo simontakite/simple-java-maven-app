@@ -1,49 +1,74 @@
-// pipeline {
-//     agent {
-//         docker 'maven:alpine'
-//     }
-//     stages {
-//         stage('Test') {
-//             steps {
-//                 sh 'mvn test'
-//             }
-//         }
-//         stage('Package') {
-//             steps {
-//                 sh 'mvn package'
-//             }
-//         }
-//         stage('Quality Analysis') {
-//             steps{
-//                 sh 'mvn sonar:sonar \
-//                 -Dsonar.projectKey=simple-maven-app \
-//                 -Dsonar.host.url=http://192.168.99.102:32382/sonar \
-//                 -Dsonar.login=7f7b85e4384f58e7e173fafec82a02e70f31f3f5 \
-//                 -Dsonar.projectVersion=$BUILD_TAG \
-//                 -Dsonar.analysis.buildNumber=$BUILD_NUMBER \
-//                 -Dsonar.analysis.pipeline=$BUILD_NUMBER \
-//                 -Dsonar.analysis.sha1=$GIT_COMMIT \
-//                 -Dsonar.analysis.repository=$GIT_URL'
-//             }
-//         }
-//     }
-// }
-@Library('kubeconsult-jenkins-lib') _
+#!groovy
+
 node('docker') {
 
+    properties([
+            // Keep only the last 10 build to preserve space
+            buildDiscarder(logRotator(numToKeepStr: '10')),
+            // Don't run concurrent builds for a branch, because they use the same workspace directory
+            disableConcurrentBuilds()
+    ])
 
+    def kubeConsultBuildLib = libraryFromLocalRepo().com.kubeconsulent.buildlib
 
-  Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
+    def mvn = kubeConsultBuildLib.MavenInDocker.new(this, "3.5.0-jdk-8")
+    mvn.useLocalRepoFromJenkins = true
+    def git = kubeConsultBuildLib.Git.new(this)
 
-  Git git = new Git(this)
+    // TODO refactor this in an object-oriented way and move to build-lib
+    if ("master".equals(env.BRANCH_NAME)) {
+        mvn.additionalArgs = "-DperformRelease"
+        currentBuild.description = mvn.getVersion()
+    } else if (!"develop".equals(env.BRANCH_NAME)) {
+        // run SQ analysis in specific project for feature, hotfix, etc.
+        mvn.additionalArgs = "-Dsonar.branch=" + env.BRANCH_NAME
+    }
 
-stage('Checkout') {
-  git = git.repositoryUrl()
-  /* Don't remove folders starting in "." like .m2 (maven), .npm, .cache, .local (bower), etc. */
-  git.clean('".*/"')
+    String emailRecipients = env.EMAIL_RECIPIENTS
+
+    catchError {
+        stage('Checkout') {
+            checkout scm
+            /* Don't remove folders starting in "." like
+             * .m2 (maven)
+             * .npm
+             * .cache, .local (bower)
+             */
+            git.clean('".*/"')
+        }
+
+        stage('Build') {
+            // Run the maven build
+            mvn 'clean install -DskipTests'
+            archive 'target/*.jar'
+        }
+
+        stage('Unit Test') {
+            mvn 'test'
+        }
+
+        stage('SonarQube') {
+
+            def sonarQube = kubeConsultBuildLib.SonarQube.new(this, 'ces-sonar')
+            sonarQube.updateAnalysisResultOfPullRequestsToGitHub('sonarqube-gh-token')
+
+            sonarQube.analyzeWith(mvn)
+
+            if (!sonarQube.waitForQualityGateWebhookToBeCalled()) {
+                currentBuild.result = 'UNSTABLE'
+            }
+        }
+    }
+
+    // Archive Unit and integration test results, if any
+    junit allowEmptyResults: true, testResults: '**/target/failsafe-reports/TEST-*.xml,**/target/surefire-reports/TEST-*.xml'
+
+    mailIfStatusChanged(findEmailRecipients(emailRecipients))
 }
 
-  stage('Build') {
-    mvn 'clean install'
-  }
+def libraryFromLocalRepo() {
+    // Workaround for loading the current repo as shared build lib.
+    // Checks out to workspace local folder named like the identifier.
+    // We have to pass an identifier with version (which is ignored). Otherwise the build fails.
+    library(identifier: 'ces-build-lib@snapshot', retriever: legacySCM(scm))
 }
