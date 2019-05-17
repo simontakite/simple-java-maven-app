@@ -1,15 +1,16 @@
 #!groovy
+@Library('kubeconsult-jenkins-lib')
+import com.kubeconsulent.buildlib.*
 
 pipeline {
   agent any
 
-  def libraryFromLocalRepo() {
-      // Workaround for loading the current repo as shared build lib.
-      // Checks out to workspace local folder named like the identifier.
-      // We have to pass an identifier with version (which is ignored). Otherwise the build fails.
-      library(identifier: 'kubeconsult-jenkins-lib', retriever: legacySCM(scm))
-  }
-
+    properties([
+            // Keep only the last 10 build to preserve space
+            buildDiscarder(logRotator(numToKeepStr: '10')),
+            // Don't run concurrent builds for a branch, because they use the same workspace directory
+            disableConcurrentBuilds()
+    ])
 
     def kubeConsultBuildLib = libraryFromLocalRepo().com.kubeconsulent.buildlib
 
@@ -66,4 +67,11 @@ pipeline {
     junit allowEmptyResults: true, testResults: '**/target/failsafe-reports/TEST-*.xml,**/target/surefire-reports/TEST-*.xml'
 
     mailIfStatusChanged(findEmailRecipients(emailRecipients))
+}
+
+def libraryFromLocalRepo() {
+    // Workaround for loading the current repo as shared build lib.
+    // Checks out to workspace local folder named like the identifier.
+    // We have to pass an identifier with version (which is ignored). Otherwise the build fails.
+    library(identifier: 'kubeconsult-jenkins-lib', retriever: legacySCM(scm))
 }
