@@ -28,10 +28,10 @@
 //         }
 //     }
 // }
-
+@Library('kubeconsult-jenkins-lib') _
 node('docker') {
 
-  @Library('kubeconsult-jenkins-lib') _
+
 
   Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
 
