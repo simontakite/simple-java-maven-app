@@ -29,12 +29,16 @@
 //     }
 // }
 
+#!groovy
 
-@Library('github.com/simontakite/kubeconsult-jenkins-lib@b1bbcca')
-import com.kubeconsult.buildlib.*
+node('docker') {
 
-Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
+  @Library('github.com/simontakite/kubeconsult-jenkins-lib@b1bbcca')
+  import com.kubeconsult.buildlib.*
 
-stage('Build') {
+  Maven mvn = new MavenInDocker(this, "3.5.0-jdk-8")
+
+  stage('Build') {
     mvn 'clean install'
+  }
 }
