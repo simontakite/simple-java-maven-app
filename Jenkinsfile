@@ -29,8 +29,6 @@
 //     }
 // }
 
-#!groovy
-
 node('docker') {
 
   @Library('github.com/simontakite/kubeconsult-jenkins-lib@b1bbcca')
