@@ -1,6 +1,6 @@
 #!groovy
-@Library('kubeconsult-jenkins-lib') _
-import com.kubeconsult.buildlib.*
+//@Library('kubeconsult-jenkins-lib') _
+//import com.kubeconsult.buildlib.*
 
 def git = Git.getBranchName(this)
 
