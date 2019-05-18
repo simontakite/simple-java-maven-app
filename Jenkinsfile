@@ -7,7 +7,7 @@ pipeline {
     agent any
     stages {
         stage('build') {
-            def git = Git.getBranchName()
+            def git = Git.getBranchName(this)
             sh '${git}'
         }
     }
