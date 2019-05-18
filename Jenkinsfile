@@ -14,10 +14,8 @@ pipeline {
     }
     stages {
         stage('Branch name') {
-            steps {
-                def git = com.kubeconsulent.buildlib.Git(this)
-                git.getCommitAuthorComplete()
-            }
+            def git = com.kubeconsulent.buildlib.Git(this)
+            git.getCommitAuthorComplete()
         }
         stage('Test') {
             steps {
