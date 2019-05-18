@@ -1,6 +1,6 @@
 #!groovy
 @Library('kubeconsult-jenkins-lib')
-import com.kubeconsult.buildlib.Git
+import com.kubeconsult.buildlib.*
 
 node('master') {
     stage('checkout and build') {
