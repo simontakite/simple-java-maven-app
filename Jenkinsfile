@@ -1,8 +1,8 @@
 #!groovy
-@Library('kubeconsult-jenkins-lib') _
+@Library('kubeconsult-jenkins-lib')
 import com.kubeconsult.buildlib.*
 
-def git = new com.kubeconsult.buildlib.git()
+def git = new com.kubeconsult.buildlib.Git()
 def repo = git.getBranchName()
 
 pipeline {
