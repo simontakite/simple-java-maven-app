@@ -5,15 +5,27 @@
 
 
 pipeline {
-    environment {
-        def git = Git.getBranchName(this)
+    agent {
+        any
     }
-
-    agent any
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('build') {
-            sh '${git}'
-
+        stage('Build') {
+            steps {
+                sh 'echo hello'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo test'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh 'echo deliver'
+            }
         }
     }
 }
