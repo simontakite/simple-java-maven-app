@@ -3,7 +3,7 @@
 import com.kubeconsult.buildlib.*
 
 def git = new com.kubeconsult.buildlib.Git(this)
-
+def repo = git.getBranchName()
 
 pipeline {
     agent {
@@ -18,8 +18,8 @@ pipeline {
     stages {
         stage('Branch name') {
             steps {
-                def repo = git.getBranchName()
-                sh 'echo $repo'
+
+                sh 'echo ${repo}'
             }
         }
         stage('Test') {
