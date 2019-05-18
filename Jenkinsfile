@@ -2,7 +2,7 @@
 @Library('kubeconsult-jenkins-lib')
 import com.kubeconsult.buildlib.*
 
-def git = new com.kubeconsult.buildlib.Git()
+def git = new com.kubeconsult.buildlib.Git(this)
 def repo = git.getBranchName()
 
 pipeline {
