@@ -4,7 +4,7 @@ import com.kubeconsult.buildlib.*
 
 
 
-def git = Git.new(this)
+def git = com.kubeconsult.buildlib.Git(this)
 
 echo git.getBranchname()
 
