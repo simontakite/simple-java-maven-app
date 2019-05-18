@@ -2,9 +2,13 @@
 //@Library('kubeconsult-jenkins-lib') _
 //import com.kubeconsult.buildlib.*
 
-def git = Git.getBranchName(this)
+
 
 pipeline {
+    environment {
+        def git = Git.getBranchName(this)
+    }
+
     agent any
     stages {
         stage('build') {
