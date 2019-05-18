@@ -2,8 +2,8 @@
 @Library('kubeconsult-jenkins-lib') _
 import com.kubeconsult.buildlib.*
 
-def git = new Git(this)
-
+def git = new com.kubeconsult.buildlib.git()
+def repo = git.getBranchName()
 
 pipeline {
     agent {
@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git.getBranchName()
+                sh 'echo $repo'
             }
         }
         stage('Test') {
