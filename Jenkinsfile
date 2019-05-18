@@ -2,8 +2,6 @@
 @Library('kubeconsult-jenkins-lib')
 import com.kubeconsult.buildlib.Git
 
-withEnv(["branch"="master"])
-
 node('master') {
     stage('checkout and build') {
         def branch
