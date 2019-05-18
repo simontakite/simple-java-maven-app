@@ -2,6 +2,7 @@
 @Library('kubeconsult-jenkins-lib') _
 import com.kubeconsult.buildlib.*
 
+def git = new Git(this)
 
 
 pipeline {
@@ -17,7 +18,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo hello'
+                git.getBranchName()
             }
         }
         stage('Test') {
