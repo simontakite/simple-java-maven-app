@@ -1,6 +1,7 @@
 #!groovy
 @Library('kubeconsult-jenkins-lib') _
-import com.kubeconsulent.buildlib.*
+import com.kubeconsult.buildlib.*
+
 
 
 def git = Git.new(this)
