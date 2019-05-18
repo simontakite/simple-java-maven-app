@@ -12,9 +12,8 @@ pipeline {
     agent any
     stages {
         stage('build') {
-            script {
-                sh '${git}'
-            }
+            sh '${git}'
+
         }
     }
 }
