@@ -1,11 +1,11 @@
 #!groovy
-@Library('kubeconsult-jenkins-lib')
+@Library('kubeconsult-jenkins-lib') _
 import com.kubeconsulent.buildlib.*
 
 pipeline {
   agent any
 
-    properties([
+    options([
             // Keep only the last 10 build to preserve space
             buildDiscarder(logRotator(numToKeepStr: '10')),
             // Don't run concurrent builds for a branch, because they use the same workspace directory
