@@ -8,9 +8,7 @@ pipeline {
     agent any
     stages {
         stage('build') {
-            steps {
-                echo git.getBranchname()
-            }
+            echo git.getBranchname()
         }
     }
 }
