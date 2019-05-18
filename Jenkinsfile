@@ -2,30 +2,12 @@
 @Library('kubeconsult-jenkins-lib')
 import com.kubeconsult.buildlib.Git
 
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-    options {
-        skipStagesAfterUnstable()
-    }
-    stages {
-        stage('Branch name') {
-            def git = com.kubeconsulent.buildlib.Git(this)
-            git.getCommitAuthorComplete()
-        }
-        stage('Test') {
-            steps {
-                sh 'echo test'
-            }
-        }
-        stage('Deliver') {
-            steps {
-                sh 'echo deliver'
-            }
-        }
+withEnv(["branch"="master"])
+
+node('master') {
+    stage('checkout and build') {
+        def branch
+        def git = new com.kubeconsult.buildlib.Git(this)
+        git.getBranchName()
     }
 }
