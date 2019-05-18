@@ -6,8 +6,10 @@ pipeline {
     agent any
     stages {
         stage('build') {
+
+            def git = com.kubeconsult.buildlib.Git(this)
+            
             steps {
-                def git = com.kubeconsult.buildlib.Git(this)
                 echo git.getBranchname()
             }
         }
