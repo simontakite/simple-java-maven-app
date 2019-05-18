@@ -8,4 +8,9 @@ node('master') {
         def git = new com.kubeconsult.buildlib.Git(this)
         git.getRepositoryUrl()
     }
+
+    stage('Docker') {
+        def docker = new com.kubeconsult.buildlib.Docker(this)
+        docker.dockerBaseImageVersion()
+    }
 }
