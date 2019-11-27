@@ -47,7 +47,7 @@ pipeline {
                             "sections": [
                                 {
                                     "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://192.168.33.10:8080/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/console) (FAILED) [Build logs](http://192.168.33.10:8080/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/consoleText)",
-                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **${GIT_COMMITTER_NAME}**",
+                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **GIT_COMMITTER_NAME**",
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png",
                                     "facts": [
                                         {
