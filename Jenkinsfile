@@ -46,13 +46,13 @@ pipeline {
                             "title": "FAIL",
                             "sections": [
                                 {
-                                    "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://url) (FAILED) [Build logs](${JENKINS_URL})",
-                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **${CHANGE_AUTHOR}**",
+                                    "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://url) (FAILED) [Build logs](${JOB_URL})",
+                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **${GIT_COMMITTER_NAME}**",
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png",
                                     "facts": [
                                         {
-                                            "name": "Commit message:",
-                                            "value": "${CHANGE_TITLE}"
+                                            "name": "Commit hash:",
+                                            "value": "${GIT_COMMIT}"
                                         },
                                         {
                                             "name": "Branch:",
