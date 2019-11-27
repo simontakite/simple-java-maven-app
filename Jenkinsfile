@@ -41,22 +41,22 @@ pipeline {
                         {
                             "@type": "MessageCard",
                             "@context": "https://schema.org/extensions",
-                            "summary": "Issue 176715375",
+                            "summary": "fail message card",
                             "themeColor": "eb4034",
                             "title": "FAIL",
                             "sections": [
                                 {
-                                    "activityTitle": "**Bankart** build [#201](http://url) (FAILED) [Build logs](http://url)",
-                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **Someone**",
+                                    "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://url) (FAILED) [Build logs](${BUILD_URL})",
+                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **${CHANGE_AUTHOR}**",
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png",
                                     "facts": [
                                         {
                                             "name": "Commit message:",
-                                            "value": "Fixed typo #3"
+                                            "value": "${CHANGE_TITLE}"
                                         },
                                         {
                                             "name": "Branch:",
-                                            "value": "develop"
+                                            "value": "${GIT_BRANCH}"
                                         }
                                     ]
                                 }
@@ -65,12 +65,12 @@ pipeline {
                                 {
                                     "@type": "HttpPOST",
                                     "name": "Bitbucket",
-                                    "target": "http://..."
+                                    "target": "${GIT_URL}"
                                 },
                                 {
                                     "@type": "HttpPOST",
                                     "name": "Jenkins",
-                                    "target": "http://..."
+                                    "target": "${JENKINS_URL}"
                                 },
                                 {
                                     "@type": "HttpPOST",
