@@ -41,14 +41,14 @@ pipeline {
                         {
                             "@type": "MessageCard",
                             "@context": "https://schema.org/extensions",
-                            "summary": "fail message card",
-                            "themeColor": "eb4034",
-                            "title": "FAIL",
+                            "summary": "success message card",
+                            "themeColor": "32a852",
+                            "title": "Success",
                             "sections": [
                                 {
                                     "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://192.168.33.10:8080/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/console) (FAILED) [Build logs](http://192.168.33.10:8080/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/consoleText)",
                                     "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **GIT_COMMITTER_NAME**",
-                                    "activityImage": "https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_960_720.png",
+                                    "activityImage": "https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_960_720.png",
                                     "facts": [
                                         {
                                             "name": "Commit hash:",
@@ -65,7 +65,12 @@ pipeline {
                                 {
                                     "@type": "HttpPOST",
                                     "name": "Bitbucket",
-                                    "target": "${GIT_URL}"
+                                    "targets": [
+                                        {
+                                            "os": "default",
+                                            "uri": "${GIT_URL}"
+                                        }
+                                    ]
                                 },
                                 {
                                     "@type": "HttpPOST",
