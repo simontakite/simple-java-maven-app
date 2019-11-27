@@ -17,6 +17,12 @@ pipeline {
                 sh "echo node_modules"
             }
         }
+        
+        stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
 
         stage('Lint') {
 
