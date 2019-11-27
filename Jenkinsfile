@@ -17,12 +17,6 @@ pipeline {
                 sh "echo node_modules"
             }
         }
-        
-        stage("Env Variables") {
-            steps {
-                sh "printenv"
-            }
-        }
 
         stage('Lint') {
 
@@ -57,8 +51,12 @@ pipeline {
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_960_720.png",
                                     "facts": [
                                         {
-                                            "name": "Commit hash:",
+                                            "name": "Hash:",
                                             "value": "${GIT_COMMIT}"
+                                        },
+                                        {
+                                            "name": "Message:",
+                                            "value": "${STAGE_NAME}"
                                         },
                                         {
                                             "name": "Branch:",
