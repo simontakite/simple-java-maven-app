@@ -18,7 +18,9 @@ pipeline {
             }
         }
         stage('Lets see') {
-            sh "git show | grep Author | cut -d ' ' -f2- | rev | cut -d ' ' -f2- | rev"
+            steps {
+                sh "git show | grep Author | cut -d ' ' -f2- | rev | cut -d ' ' -f2- | rev"
+            }
         }
         stage('Lint') {
 
