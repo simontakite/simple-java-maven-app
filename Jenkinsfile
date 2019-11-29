@@ -26,7 +26,7 @@ pipeline {
             environment {
                 DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
                 GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
-                GIT_COMMIT_AUTHOR = sh(script: 'git show | grep Author | cut -d ' ' -f2- | rev | cut -d ' ' -f2- | rev', , returnStdout: true).trim()
+                GIT_COMMIT_AUTHOR = sh(script: 'git show | grep Author | cut -d " " -f2- | rev | cut -d " " -f2- | rev', , returnStdout: true).trim()
             }
             /*
             when {
