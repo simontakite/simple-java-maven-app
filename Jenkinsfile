@@ -25,6 +25,7 @@ pipeline {
             } */
             environment {
                 DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
+                GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
             }
             /*
             when {
@@ -55,7 +56,7 @@ pipeline {
                                     "facts": [
                                         {
                                             "name": "Hash:",
-                                            "value": "${GIT_COMMIT}"
+                                            "value": "${GIT_COMMIT_HASH}"
                                         },
                                         {
                                             "name": "Message:",
