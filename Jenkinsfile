@@ -22,8 +22,11 @@ pipeline {
 
             /* agent {
                 docker "circleci/node:lts-browsers-legacy"
+            } */
+            environment {
+                DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
             }
-
+            /*
             when {
                 anyOf {
                     branch 'dev';
@@ -47,7 +50,7 @@ pipeline {
                             "sections": [
                                 {
                                     "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://vm-stbuild-5:9998/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/console) (SUCCEEDED) [Build logs](http://vm-stbuild-5:9998/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/consoleText)",
-                                    "activitySubtitle": "Finished: 9/13/2019, 11:46am Changes by **GITCOMMITTERNAME**",
+                                    "activitySubtitle": "Finished: ${DATE_RUN} Changes by **GITCOMMITTERNAME**",
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_960_720.png",
                                     "facts": [
                                         {
