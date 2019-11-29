@@ -26,6 +26,7 @@ pipeline {
             environment {
                 DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
                 GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
+                GIT_COMMIT_AUTHOR = sh(script: 'git show -s --format='%ae' $GIT_COMMIT_HASH', , returnStdout: true).trim()
             }
             /*
             when {
