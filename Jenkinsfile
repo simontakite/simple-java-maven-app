@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Lets see') {
             steps {
-                sh "git show | grep Author | cut -d ' ' -f2- | rev | cut -d ' ' -f2- | rev"
+                sh "git log -1 --pretty=format:'%an'"
             }
         }
         stage('Lint') {
