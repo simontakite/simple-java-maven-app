@@ -34,6 +34,7 @@ pipeline {
                 GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
                 GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
                 GIT_COMMIT_MESSAGE = sh(returnStdout: true, script: "git log -1 --pretty=%B").trim()
+                GIT_URL = sh(returnStdout: true, script: "git ls-remote --get-url").trim()
             }
             /*
             when {
