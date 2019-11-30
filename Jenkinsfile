@@ -17,6 +17,12 @@ pipeline {
                 sh "echo node_modules"
             }
         }
+        
+        stage ('Learn') {
+            steps {
+                sh "git ls-remote --get-url"
+            }
+        }
      
         stage('Lint') {
 
