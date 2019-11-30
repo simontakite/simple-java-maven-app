@@ -82,12 +82,7 @@ pipeline {
                                 {
                                     "@type": "HttpPOST",
                                     "name": "Bitbucket",
-                                    "targets": [
-                                        {
-                                            "os": "default",
-                                            "uri": "${GIT_URL}"
-                                        }
-                                    ]
+                                    "targets": "${GIT_URL}"
                                 },
                                 {
                                     "@type": "HttpPOST",
