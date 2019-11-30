@@ -80,9 +80,14 @@ pipeline {
                             ],
                             "potentialAction": [
                                 {
-                                    "@type": "HttpPOST",
+                                    "@type": "OpenUri",
                                     "name": "Bitbucket",
-                                    "targets": "${GIT_URL}"
+                                    "targets": [
+                                        {
+                                            "os": "default",
+                                            "uri": "${GIT_URL}"
+                                        }
+                                    ]
                                 },
                                 {
                                     "@type": "HttpPOST",
