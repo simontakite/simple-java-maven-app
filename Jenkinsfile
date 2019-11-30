@@ -17,11 +17,7 @@ pipeline {
                 sh "echo node_modules"
             }
         }
-        stage('Lets see') {
-            steps {
-                sh "git log -1 --pretty=format:'%an'"
-            }
-        }
+     
         stage('Lint') {
 
             /* agent {
@@ -30,7 +26,7 @@ pipeline {
             environment {
                 DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
                 GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
-                GIT_COMMIT_AUTHOR = sh(script: "git show | grep Author | cut -d ' ' -f2- | rev | cut -d ' ' -f2- | rev", , returnStdout: true).trim()
+                GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
                 GIT_COMMIT_MESSAGE = sh(returnStdout: true, script: "git log -1 --pretty=%B").trim()
             }
             /*
@@ -57,7 +53,7 @@ pipeline {
                             "sections": [
                                 {
                                     "activityTitle": "**${JOB_NAME}** build [${BUILD_DISPLAY_NAME}](http://vm-stbuild-5:9998/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/console) (SUCCEEDED) [Build logs](http://vm-stbuild-5:9998/job/${JOB_BASE_NAME}/${BUILD_NUMBER}/consoleText)",
-                                    "activitySubtitle": "Finished: ${DATE_RUN} Changes by **GITCOMMITAUTHOR**",
+                                    "activitySubtitle": "Finished: ${DATE_RUN} Changes by **${GIT_COMMIT_AUTHOR}**",
                                     "activityImage": "https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_960_720.png",
                                     "facts": [
                                         {
