@@ -90,19 +90,34 @@ pipeline {
                                     ]
                                 },
                                 {
-                                    "@type": "HttpPOST",
-                                    "name": "Jenkins",
-                                    "target": "${JENKINS_URL}"
+                                    "@type": "OpenUri",
+                                    "name": "Bitbucket",
+                                    "targets": [
+                                        {
+                                            "os": "default",
+                                            "uri": "${JENKINS_URL}"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "@type": "HttpPOST",
-                                    "name": "Sonarqube",
-                                    "target": "http://..."
+                                    "@type": "OpenUri",
+                                    "name": "SonarQube",
+                                    "targets": [
+                                        {
+                                            "os": "default",
+                                            "uri": "http://..."
+                                        }
+                                    ]
                                 },
                                 {
-                                    "@type": "HttpPOST",
+                                    "@type": "OpenUri",
                                     "name": "Kibana",
-                                    "target": "http://..."
+                                    "targets": [
+                                        {
+                                            "os": "default",
+                                            "uri": "http://..."
+                                        }
+                                    ]
                                 },
                                 {
                                     "@type": "OpenUri",
