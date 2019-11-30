@@ -91,11 +91,11 @@ pipeline {
                                 },
                                 {
                                     "@type": "OpenUri",
-                                    "name": "Bitbucket",
+                                    "name": "Jenkins",
                                     "targets": [
                                         {
                                             "os": "default",
-                                            "uri": "${JENKINS_URL}"
+                                            "uri": "http://192.168.33.10:8080/job/${JOB_NAME}"
                                         }
                                     ]
                                 },
