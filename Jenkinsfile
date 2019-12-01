@@ -24,7 +24,7 @@ pipeline {
             
             steps {
                 echo "get git tag"
-                gittag()
+                gitTag()
             }
         }
 
