@@ -17,7 +17,7 @@ pipeline {
                 }
             } */
             steps {
-                sh "echo node_modules"
+                sh "git tag --points-at HEAD"
             }
         }
         
