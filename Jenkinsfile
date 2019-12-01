@@ -5,7 +5,7 @@ pipeline {
     agent any
     
     environment {
-        tag = null
+        tag = gitTag()
     }
 
     // stage pipeline
@@ -27,9 +27,6 @@ pipeline {
         stage ('Learn') {
             
             steps {
-                script {
-                    tag = gitTag()
-                }
                 sh 'echo "${tag}"'
             }
         }
