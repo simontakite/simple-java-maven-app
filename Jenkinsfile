@@ -1,5 +1,5 @@
 @Library(['nets-jenkins-lib'])_
-def tag = gitTag()
+
 pipeline {
 
     agent any
@@ -23,6 +23,7 @@ pipeline {
         stage ('Learn') {
             
             steps {
+                def tag = gitTag()
                 echo "${tag}"
             }
         }
