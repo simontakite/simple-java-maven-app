@@ -27,7 +27,7 @@ pipeline {
         stage ('Learn') {
             
             steps {
-                sh 'echo "${gittag}"'
+                sh 'echo ${gittag}'
             }
         }
 
