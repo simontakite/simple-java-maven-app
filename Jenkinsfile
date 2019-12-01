@@ -21,8 +21,9 @@ pipeline {
         }
         
         stage ('Learn') {
-            def gittag = gitTag()
+            
             steps {
+                def gittag = gitTag()
                 echo "${gittag}"
             }
         }
