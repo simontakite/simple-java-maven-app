@@ -18,7 +18,7 @@ pipeline {
             } */
             steps {
                 script {
-                    sh "git tag --points-at HEAD"
+                    sh 'git version'
                 }
             }
         }
