@@ -5,7 +5,7 @@ pipeline {
     agent any
     
     environment {
-        gittag = gitTag()
+        def String gittag = gitTag()
     }
 
     // stage pipeline
