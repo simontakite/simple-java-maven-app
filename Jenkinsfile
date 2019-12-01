@@ -5,7 +5,7 @@ pipeline {
     agent any
     
     environment {
-        def String gittag = gitTag()
+        GIT_TAG = gitTag()
     }
 
     // stage pipeline
@@ -27,7 +27,7 @@ pipeline {
         stage ('Learn') {
             
             steps {
-                sh 'echo ${gittag}'
+                sh 'echo ${env.GIT_TAG}'
             }
         }
 
