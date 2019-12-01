@@ -1,3 +1,5 @@
+@Library(['https://github.com/simontakite/nets-jenkins-lib']) _
+
 pipeline {
 
     agent any
@@ -19,16 +21,15 @@ pipeline {
         }
         
         stage ('Learn') {
+            def gittag = gitTag()
             steps {
-                sh "git ls-remote --get-url"
+                echo "${gittag}"
             }
         }
-     
+
+        /*
         stage('Lint') {
 
-            /* agent {
-                docker "circleci/node:lts-browsers-legacy"
-            } */
             environment {
                 DATE_RUN = sh(script: 'date', , returnStdout: true).trim()
                 GIT_COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', , returnStdout: true).trim()
@@ -36,14 +37,7 @@ pipeline {
                 GIT_COMMIT_MESSAGE = sh(returnStdout: true, script: "git log -1 --pretty=%B").trim()
                 GIT_URL = sh(returnStdout: true, script: "git ls-remote --get-url").trim()
             }
-            /*
-            when {
-                anyOf {
-                    branch 'dev';
-                    branch 'stage';
-                    buildingTag()
-                }
-            } */
+
             steps {
                 echo "Lint"
             }
@@ -140,6 +134,6 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
     }
 }
