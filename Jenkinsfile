@@ -23,6 +23,7 @@ pipeline {
         stage ('Learn') {
             
             steps {
+                def gittag = gitTag()
                 sh 'echo "${gittag}"'
             }
         }
