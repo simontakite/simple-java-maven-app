@@ -17,7 +17,9 @@ pipeline {
                 }
             } */
             steps {
-                sh "git tag --points-at HEAD"
+                script {
+                    sh "git tag --points-at HEAD"
+                }
             }
         }
         
