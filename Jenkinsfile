@@ -18,7 +18,7 @@ pipeline {
             } */
             steps {
                 script {
-                    sh 'git version'
+                    sh 'git rev-parse --short HEAD'
                 }
             }
         }
