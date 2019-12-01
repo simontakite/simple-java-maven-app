@@ -1,4 +1,4 @@
-@Library(['github.com/simontakite/nets-jenkins-lib']) _
+@Library(['nets-jenkins-lib'])_
 
 pipeline {
 
