@@ -27,7 +27,7 @@ pipeline {
         stage ('Learn') {
             
             steps {
-                sh 'echo ${env.GIT_TAG}'
+                sh 'echo env.GIT_TAG'
             }
         }
 
