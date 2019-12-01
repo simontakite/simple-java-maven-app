@@ -25,11 +25,11 @@ pipeline {
         
         stage ('Learn') {
             environment {
-                tag = gitTag()
+                hash = gitCommitHash()
             }
             
             steps {
-                sh 'echo "${tag}"'
+                sh 'echo "${hash}"'
             }
         }
 
