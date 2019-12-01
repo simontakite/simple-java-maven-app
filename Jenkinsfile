@@ -3,6 +3,10 @@
 pipeline {
 
     agent any
+    
+    environment {
+        gittag = gitTag()
+    }
 
     // stage pipeline
     stages {
@@ -23,7 +27,6 @@ pipeline {
         stage ('Learn') {
             
             steps {
-                gittag = gitTag()
                 sh 'echo "${gittag}"'
             }
         }
