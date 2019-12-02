@@ -1,4 +1,4 @@
-@Library(['nets-shared-library'])_
+@Library(['nets-shared-library@master'])_
 
 pipeline {
 
