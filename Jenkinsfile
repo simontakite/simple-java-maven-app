@@ -1,4 +1,4 @@
-@Library(['nets-jenkins-lib'])_
+@Library(['nets-shared-library'])_
 
 pipeline {
 
