@@ -2,7 +2,7 @@
 
 pipeline {
 
-    agent any
+    agent { label 'no1-stbuild-2' }
     
 
     // stage pipeline
