@@ -16,7 +16,7 @@ pipeline {
                 script {
                     buildURL = env.BUILD_URL
                     newBuildURL = ${env.BUILD_URL}.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
-                    echo "${newBuildURL}"
+                    echo ${newBuildURL}
                 }
             }
         }
