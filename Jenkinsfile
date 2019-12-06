@@ -1,7 +1,7 @@
 //@Library(['nets-shared-library@master'])_
 
-def buildURL = env.BUILD_URL
-def newBuildURL = buildURL.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
+buildURL = env.BUILD_URL
+newBuildURL = buildURL.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
 
 pipeline {
 
@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               sh 'echo ${newBuildURL}'
+                sh 'echo ${newBuildURL}'
             }
         }
     }
