@@ -10,13 +10,14 @@ pipeline {
     }*/
 
     stages {
-        stage(Test) {
+        stage('build') {
             steps {
-                def buildURL = env.BUILD_URL
-                def newBuildURL = buildURL.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
-                sh 'echo "${newBuildURL}"'
+               def buildURL = env.BUILD_URL
+               def newBuildURL = buildURL.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
+               sh 'echo "${newBuildURL}"'
             }
         }
+    }
 
         // checkout source code
         /*stage('Prepare') {
