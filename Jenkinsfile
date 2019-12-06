@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               sh 'echo "${newBuildURL}"'
+               sh 'echo ${newBuildURL}'
             }
         }
     }
