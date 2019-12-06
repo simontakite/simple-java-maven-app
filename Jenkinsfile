@@ -15,7 +15,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'echo ${env.BUILD_URL}'
+                build = env.BUILD_URL
+                sh 'echo ${build}'
             }
         }
     }
