@@ -13,12 +13,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                script {
-                    def gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-                    def gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
-                    echo '${gitHttp}'
+                gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
+                gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
+                sh '${gitHttp}'
                 }
-            }
         }
     }
 
