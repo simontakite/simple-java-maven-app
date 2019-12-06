@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     buildURL = env.BUILD_URL
-                    newBuildURL = buildURL.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
+                    newBuildURL = ${env.BUILD_URL}.replace("job/${env.JOB_NAME}", "blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}")
                     echo "${newBuildURL}"
                 }
             }
