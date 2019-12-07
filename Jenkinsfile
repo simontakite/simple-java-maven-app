@@ -1,10 +1,12 @@
 //@Library(['nets-shared-library@master'])_
 
+def gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
+def gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
 
 pipeline {
 
-    agent { label 'no1-stbuild-2' }
-    // agent  any 
+    // agent { label 'no1-stbuild-2' }
+    agent  any 
 
     /*environment {
         channel = "https://outlook.office.com/webhook/1798ddcb-c988-4a06-8f8c-ce3148559169@79dc228f-c8f2-4016-8bf0-b990b6c72e98/IncomingWebhook/e9c54d644ca948bc96583b4f83f697fe/961972c6-bcc2-4d50-8163-666c06d3a57f"
@@ -13,10 +15,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-                gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
                 sh '${gitHttp}'
-                }
+            }
         }
     }
 
