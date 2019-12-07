@@ -1,7 +1,6 @@
 //@Library(['nets-shared-library@master'])_
 
-def gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-def gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
+
 
 pipeline {
 
@@ -15,7 +14,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh '${gitHttp}'
+                script {
+                    def gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
+                    def gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
+                    echo '${gitHttp}'
+                }
             }
         }
     }
