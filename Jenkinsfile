@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     def gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-                    def gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "")
+                    gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", " ")
                     echo '${gitHttp}'
                 }
             }
