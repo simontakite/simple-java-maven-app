@@ -14,8 +14,8 @@ pipeline {
     stages {
         stage('build') {
             environment {
-                gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-                gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "").replace(".git","")
+                //gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
+                gitHttp = ${env.GIT_URL}.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "").replace(".git","")
             }
             steps {
                 script {
