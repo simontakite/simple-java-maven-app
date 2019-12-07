@@ -15,11 +15,10 @@ pipeline {
         stage('build') {
             environment {
                 gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
-                gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", " ")
+                gitHttp = gitUrl.replace("ssh://git@bitbucket.nets.no:29481/rt247/", "").replace(".git","")
             }
             steps {
                 script {
-                    
                     echo "${env.gitHttp}"
                 }
             }
