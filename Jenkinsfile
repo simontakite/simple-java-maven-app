@@ -21,6 +21,10 @@ def releaseVersion(scope) {
 
 }
 
+def getReleasedVersion() {
+    return (readFile('pom.xml') =~ '<version>(.+)-SNAPSHOT</version>')[0][1]
+}
+
 pipeline {
 
     // agent { label 'no1-stbuild-2' }
@@ -38,11 +42,13 @@ pipeline {
                 //gitUrl = "ssh://git@bitbucket.nets.no:29481/rt247/bankart-implementation.git"
                 gitHttp = "${env.GIT_URL}".replace("ssh://git@bitbucket.nets.no:29481/rt247/", "").replace(".git","")
                 ver = releaseVersion(minor)
+                relver = getReleasedVersion()
             }
             steps {
                 script {
                     echo "${env.gitHttp}"
                     echo "${ver}"
+                   echo "${relver}"
                 }
             }
         }
