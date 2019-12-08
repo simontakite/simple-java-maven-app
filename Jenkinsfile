@@ -52,6 +52,11 @@ pipeline {
                 }
             }
         }
+        stage('Script') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
     }
 
         // checkout source code
