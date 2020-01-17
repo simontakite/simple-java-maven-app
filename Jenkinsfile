@@ -9,7 +9,7 @@ pipeline {
             steps {
                 // Run the maven build
                 checkout(poll: false, scm: [$class: 'GitSCM', 
-                	branches: [[name: '*/develop']], 
+                	branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'PathRestriction', excludedRegions: '', includedRegions: 'src/*']], 
                     submoduleCfg: [], 
