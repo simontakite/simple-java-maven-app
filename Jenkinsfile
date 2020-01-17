@@ -13,7 +13,7 @@ pipeline {
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'PathRestriction', excludedRegions: '', includedRegions: 'src/*']], 
                     submoduleCfg: [], 
-                    userRemoteConfigs: [[url: "https://bitbucket.nets.no/scm/~sktak/realtime-poc.git", credentialsId: "jenkinslib"]]])
+                    userRemoteConfigs: [[url: "https://github.com/simontakite/simple-java-maven-app.git"]]])
             }
         }
         stage('list') {
