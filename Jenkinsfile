@@ -7,7 +7,7 @@ pipeline {
         stage('checkout') {
 
             steps {
-                // Run the maven build
+                // Run the maven build | 
                 checkout(poll: false, scm: [$class: 'GitSCM', 
                 	branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
