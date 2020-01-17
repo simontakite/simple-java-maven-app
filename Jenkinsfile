@@ -7,28 +7,26 @@ pipeline {
         stage('checkout') {
 
             steps {
-                // Run the maven build | 
-                /* checkout(poll: false, scm: [$class: 'GitSCM', 
-                	branches: [[name: 'master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'PathRestriction', excludedRegions: '', includedRegions: 'src/*']], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[url: "https://github.com/simontakite/simple-java-maven-app.git"]]]) */
+                // Run the maven build |
                 scm {
                     git {
                         remote {
-                            url 'https://github.com/simontakite/simple-java-maven-app.git'
+                            github('https://github.com/simontakite/simple-java-maven-app.git')
                         }
-
-                        branch '*/master'
-
-                        // Add extensions 'SparseCheckoutPaths' and 'PathRestriction'
-                        def nodeBuilder = NodeBuilder.newInstance()
-
-                        def pathRestrictions = nodeBuilder.createNode('hudson.plugins.git.extensions.impl.PathRestriction')
-                        pathRestrictions.appendNode('includedRegions', 'src/.*')
+                        branch('*/masters')
+                        configure { node ->
+                            node / 'extensions' << 'hudson.plugins.git.extensions.impl.PathRestriction' {
+                                includedRegions 'src/.*'
+                                excludedRegions ''
+                            }
+                        }
                         extensions {
-                            extensions << pathRestrictions
+                            cleanAfterCheckout()
+                            cleanBeforeCheckout()
+                            cloneOptions {
+                                shallow(true)
+                            }
+                            wipeOutWorkspace()
                         }
                     }
                 }
