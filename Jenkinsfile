@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        // build
+        // build ---
         stage('checkout') {
 
             steps {
