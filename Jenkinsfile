@@ -14,7 +14,7 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
                     doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'DisableRemotePoll'], [$class: 'PathRestriction', excludedRegions: '', includedRegions: 'src/.*']], 
+                    extensions: [[$class: 'DisableRemotePoll'], [$class: 'PathRestriction', excludedRegions: 'test/.*', includedRegions: 'src/.*']],
                     submoduleCfg: [], 
                     userRemoteConfigs: [[credentialsId: 'jenkinsgithub', url: 'https://github.com/simontakite/simple-java-maven-app.git']]])
             }
