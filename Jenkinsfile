@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        // build ---
+        // build --- |
         stage('checkout') {
 
             steps {
@@ -22,7 +22,7 @@ pipeline {
         stage('list') {
             steps {
                 script {
-                    sh 'ls -la'
+                    sh 'ls -l'
                 }
             }
         }
