@@ -11,12 +11,23 @@ pipeline {
         stage('checkout') {
 
             steps {
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'DisableRemotePoll'], [$class: 'PathRestriction', excludedRegions: 'test/.*', includedRegions: 'src/.*']],
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'jenkinsgithub', url: 'https://github.com/simontakite/simple-java-maven-app.git']]])
+                scm {
+                    git {
+                        remote {
+                            github('https://github.com/simontakite/simple-java-maven-app.git')
+                        }
+                        extensions {
+                            cleanBeforeCheckout()
+                            disableRemotePoll() // this is important for path restrictions to work
+                            configure { git ->
+                                git / 'extensions' / 'hudson.plugins.git.extensions.impl.PathRestriction' {
+                                    includedRegions "src/.*"
+                                    excludedRegions ""
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         stage('list') {
