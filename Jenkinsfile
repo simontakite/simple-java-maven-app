@@ -14,7 +14,7 @@ pipeline {
                 scm {
                     git {
                         remote {
-                            github('https://github.com/simontakite/simple-java-maven-app.git')
+                            url('https://github.com/simontakite/simple-java-maven-app.git')
                         }
                         extensions {
                             cleanBeforeCheckout()
