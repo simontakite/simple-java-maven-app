@@ -13,23 +13,22 @@ pipeline {
             steps {
                 scm {
                     git {
-                        remote {
-                            url('https://github.com/simontakite/simple-java-maven-app.git')
-                        }
-                        extensions {
-                            cleanBeforeCheckout()
-                            disableRemotePoll() // this is important for path restrictions to work
-                            configure { git ->
-                                git / 'extensions' / 'hudson.plugins.git.extensions.impl.PathRestriction' {
-                                    includedRegions "src/.*"
-                                    excludedRegions ""
-                                }
+                        url('https://github.com/simontakite/simple-java-maven-app.git')
+                    }
+                    extensions {
+                        cleanBeforeCheckout()
+                        disableRemotePoll() // this is important for path restrictions to work
+                        configure { git ->
+                            git / 'extensions' / 'hudson.plugins.git.extensions.impl.PathRestriction' {
+                                includedRegions "src/.*"
+                                excludedRegions ""
                             }
                         }
                     }
                 }
             }
         }
+
         stage('list') {
             steps {
                 script {
