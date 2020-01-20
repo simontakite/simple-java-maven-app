@@ -24,6 +24,9 @@ pipeline {
                                 excludedRegions ""
                             }
                         }
+                        script {
+                            sh "echo 'hello'"
+                        }
                     }
                 }
             }
