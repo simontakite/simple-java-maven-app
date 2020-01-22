@@ -71,7 +71,7 @@
             </properties>
             <build>
                 <plugins>
-                    <!-- Code coverage. -->
+			<!-- Code coverage. // comment-->
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
