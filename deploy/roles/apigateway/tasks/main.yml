@@ -27,6 +27,8 @@
 
 - name: Show files
   command: ls -la
+  args:
+    chdir: /home/vagrant/simon
   register: show
 
 - debug: msg="{{ show.stdout }}"
