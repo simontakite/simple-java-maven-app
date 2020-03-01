@@ -18,7 +18,7 @@
 - name: Create simon directory
   file:
     path: /home/vagrant/simon
-    state:
+    state: directory
     mode: '0755'
 
 - name: Transfer executable script script
