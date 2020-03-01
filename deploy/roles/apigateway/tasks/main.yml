@@ -21,7 +21,7 @@
     state: directory
     mode: '0755'
 
-- name: Transfer executable script script
+- name: Transfer executable script
   copy: src=/var/lib/jenkins/workspace/{{ jenkins_app_name }}/deploy/roles/apigateway/files/info.sh dest=/home/vagrant/simon mode=0777
 
 - name: Execute the script
