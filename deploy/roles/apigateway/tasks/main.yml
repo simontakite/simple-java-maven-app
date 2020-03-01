@@ -5,31 +5,32 @@
 #  dest=/etc/ntp.conf mode=644 owner=root group=root
 #  register: install
 
-#- name: Run a script with arguments (using 'cmd' parameter)
-#  script:
-#    cmd: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
+- name: execute script
+  script: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
+  args:
+    creates: /home/vagrant/ans-test.html
+  register: install
+
+#- debug: msg="{{ install.stdout }}"
+
+#- name: copy scripts to host
+#  copy:
+#    src: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh
+#    dest: /tmp/info.sh
+#    owner: vagrant
+#    group: vagrant
+#    mode: 0755
+
+#- name: show file
+#  command: ls -l /tmp
 #  register: install
 
 #- debug: msg="{{ install.stdout }}"
 
-- name: copy scripts to host
-  copy:
-    src: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh
-    dest: /tmp/info.sh
-    owner: vagrant
-    group: vagrant
-    mode: 0755
+#- name: run script
+#  script:
+#    cmd: /tmp/info.sh ansible-test.html
+#    remote_src: yes
+#  register: script
 
-- name: show file
-  command: ls -l /tmp
-  register: install
-
-- debug: msg="{{ install.stdout }}"
-
-- name: run script
-  script:
-    cmd: /tmp/info.sh ansible-test.html
-    remote_src: yes
-  register: script
-
-- debug: msg="{{ script.stdout }}"
+#- debug: msg="{{ script.stdout }}"
