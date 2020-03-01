@@ -5,35 +5,25 @@
 #  dest=/etc/ntp.conf mode=644 owner=root group=root
 #  register: install
 
-- name: execute script
-  script: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh -f ans-test.html
-  args:
-    chdir: /home/vagrant
-    creates: /home/vagrant/ans-test.html
-  register: install
-  retries: 30
-  delay: 1
-
-- debug: msg="{{ install.stdout }}"
-
-#- name: copy scripts to host
-#  copy:
-#    src: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh
-#    dest: /tmp/info.sh
-#    owner: vagrant
-#    group: vagrant
-#    mode: 0755
-
-#- name: show file
-#  command: ls -l /tmp
+#- name: execute script
+#  script: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh -f ans-test.html
+#  args:
+#    chdir: /home/vagrant
+#    creates: /home/vagrant/ans-test.html
 #  register: install
+#  retries: 30
+#  delay: 1
 
 #- debug: msg="{{ install.stdout }}"
 
-#- name: run script
-#  script:
-#    cmd: /tmp/info.sh ansible-test.html
-#    remote_src: yes
-#  register: script
+- name: Copy package to target machines
+  synchronize: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/var/tmp/
+  register: result_copy
 
-#- debug: msg="{{ script.stdout }}"
+- name: Run installation and verification script
+  script: /var/tmp/info.sh
+  register: result_run
+  when: result_copy.changed
+
+- name: Show result
+  debug: msg="{{ result_run.stdout }}"
