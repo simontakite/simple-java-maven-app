@@ -1,6 +1,6 @@
 ---
 # playbook to install apigateway
-- hosts: web1
+- hosts: webservers
   become: true
   gather_facts: no
 

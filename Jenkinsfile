@@ -16,7 +16,7 @@ pipeline {
         stage('inventory') {
             steps {
                 //sh 'ansible -m ping webservers -i .ansible/inventory.ini --private-key /var/lib/jenkins/ansible.key -u vagrant'
-                sh 'ansible-playbook deploy/00-install-apigateway.yml -i deploy/inventory.ini --private-key /var/lib/jenkins/ansible.key -u vagrant -vvv'
+                sh 'ansible-playbook deploy/00-install-apigateway.yml -i deploy/inventory.ini --private-key /var/lib/jenkins/ansible.key -u vagrant'
             }
         }
     }
