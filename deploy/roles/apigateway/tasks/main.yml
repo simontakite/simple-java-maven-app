@@ -14,7 +14,7 @@
   retries: 30
   delay: 1
 
-#- debug: msg="{{ install.stdout }}"
+- debug: msg="{{ install.stdout }}"
 
 #- name: copy scripts to host
 #  copy:
