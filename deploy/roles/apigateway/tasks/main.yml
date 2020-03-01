@@ -29,6 +29,7 @@
 - name: run script
   script:
     cmd: /tmp/info.sh ansible-test.html
+    remote_src: yes
   register: script
 
 - debug: msg="{{ script.stdout }}"
