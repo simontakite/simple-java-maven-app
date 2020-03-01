@@ -15,7 +15,7 @@ pipeline {
         }
         stage('inventory') {
             steps {
-                sh 'ansible -m ping all -i .ansible/inventory.ini --private-key /var/lib/jenkins/ansible.key -u vagrant'
+                sh 'ansible -m ping webservers -i .ansible/inventory.ini --private-key /var/lib/jenkins/ansible.key -u vagrant'
             }
         }
     }
