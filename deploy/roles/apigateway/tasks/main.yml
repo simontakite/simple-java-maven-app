@@ -1,7 +1,13 @@
 ---
 # tasks file for apigateway
-- name: execute script file
-  shell: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
+#- name: execute script file
+#  shell: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh
+#  dest=/etc/ntp.conf mode=644 owner=root group=root
+#  register: install
+
+- name: Run a script with arguments (using 'cmd' parameter)
+  script:
+    cmd: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
   register: install
 
 - debug: msg="{{ install.stdout }}"
