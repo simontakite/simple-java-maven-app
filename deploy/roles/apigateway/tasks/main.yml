@@ -25,3 +25,10 @@
   register: install
 
 - debug: msg="{{ install.stdout }}"
+
+- name: run script
+  script:
+    cmd: /tmp/info.sh ansible-test.html
+  register: script
+
+- debug: msg="{{ script.stdout }}"
