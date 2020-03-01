@@ -21,4 +21,4 @@
     mode: 0755
 
 - name: show file
-  cmd: ls -l /tmp
+  command: ls -l /tmp
