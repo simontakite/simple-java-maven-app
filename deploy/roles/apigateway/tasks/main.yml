@@ -22,7 +22,7 @@
     mode: '0755'
 
 - name: Transfer executable script script
-  copy: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/home/vagrant/simon mode=0777
+  copy: src=./deploy/roles/apigateway/files/info.sh dest=/home/vagrant/simon mode=0777
 
 - name: Execute the script
   command: sh /home/vagrant/simon/info.sh -f {{ output_file }}
