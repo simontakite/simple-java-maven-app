@@ -17,18 +17,18 @@
 #- debug: msg="{{ install.stdout }}"
 
 - name: Transfer executable script script
-  copy: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/tmp mode=0777
+  copy: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/home/vagrant/simon mode=0777
 
 - name: Execute the script
-  command: sh /tmp/info.sh -f testtest.html
+  command: sh /home/vagrant/simon/info.sh -f testtest.html
   args:
-    chdir: /tmp
-    creates: /tmp/testtest.html
+    chdir: /home/vagrant/simon
+    creates: /home/vagrant/simon/testtest.html
 
 - name: Show files
   command: ls -la
   args:
     chdir: /home/vagrant/simon
-  register: show
+  #register: show
 
-- debug: msg="{{ show.stdout }}"
+#- debug: msg="{{ show.stdout }}"
