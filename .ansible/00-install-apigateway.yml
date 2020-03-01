@@ -1,0 +1,8 @@
+---
+# playbook to install apigateway
+- hosts: webservers
+  become: true
+  gather_facts: no
+
+  roles:
+    - apigateway

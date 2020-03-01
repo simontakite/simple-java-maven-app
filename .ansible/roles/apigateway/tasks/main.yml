@@ -1,0 +1,4 @@
+---
+# tasks file for apigateway
+- name: list files
+  command: ls -la
