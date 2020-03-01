@@ -21,6 +21,12 @@
 
 - name: Execute the script
   command: sh /tmp/info.sh -f testtest.html
+  args:
+    chdir: /tmp
+    creates: /tmp/testtest.html
 
 - name: Show files
   command: ls -la
+  register: show
+
+- debug: msg="{{ show.stdout }}"
