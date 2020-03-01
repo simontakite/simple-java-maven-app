@@ -16,14 +16,11 @@
 
 #- debug: msg="{{ install.stdout }}"
 
-- name: Copy package to target machines
-  synchronize: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/var/tmp/
-  register: result_copy
+- name: Transfer executable script script
+  copy: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/tmp mode=0777
 
-- name: Run installation and verification script
-  script: /var/tmp/info.sh
-  register: result_run
-  when: result_copy.changed
+- name: Execute the script
+  command: sh /tmp/info.sh -f testtest.html
 
-- name: Show result
-  debug: msg="{{ result_run.stdout }}"
+- name: Show files
+  command: ls -la
