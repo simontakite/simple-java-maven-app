@@ -1,7 +1,7 @@
 ---
 # tasks file for apigateway
 - name: execute script file
-  script: /home/vagrant/info.sh ans-test.html
+  shell: ./.ansible/roles/files/info.sh ans-test.html
   register: install
 
 - debug: msg="{{ install.stdout }}"
