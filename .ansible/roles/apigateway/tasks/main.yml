@@ -1,7 +1,7 @@
 ---
 # tasks file for apigateway
-- name: list files
-  command: ls -la
-  register: list
+- name: execute script file
+  script: /home/vagrant/info.sh ans-test.html
+  register: install
 
-- debug: msg="{{ list.stdout }}"
+- debug: msg="{{ install.stdout }}"
