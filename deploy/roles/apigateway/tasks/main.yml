@@ -22,3 +22,6 @@
 
 - name: show file
   command: ls -l /tmp
+  register: install
+
+- debug: msg="{{ install.stdout }}"
