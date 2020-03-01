@@ -1,2 +1,3 @@
 ---
 # defaults file for apigateway
+output_file: "variable-file.hmtl"

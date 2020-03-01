@@ -18,17 +18,17 @@
 - name: Create simon directory
   file:
     path: /home/vagrant/simon
-    state: directory
+    state:
     mode: '0755'
 
 - name: Transfer executable script script
   copy: src=/var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh dest=/home/vagrant/simon mode=0777
 
 - name: Execute the script
-  command: sh /home/vagrant/simon/info.sh -f testtest.html
+  command: sh /home/vagrant/simon/info.sh -f {{ output_file }}
   args:
     chdir: /home/vagrant/simon
-    creates: /home/vagrant/simon/testtest.html
+    creates: /home/vagrant/simon/{{ output_file }}
 
 - name: Show files
   command: ls -la
