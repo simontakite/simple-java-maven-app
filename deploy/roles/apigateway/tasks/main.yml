@@ -21,9 +21,9 @@
 
 - name: Execute the script
   command: sh /home/vagrant/simon/info.sh -f /home/vagrant/simon/testtest.html
-  args:
-    chdir: /home/vagrant/simon
-    creates: /home/vagrant/simon/testtest.html
+#  args:
+#    chdir: /home/vagrant/simon
+#    creates: /home/vagrant/simon/testtest.html
 
 - name: Show files
   command: ls -la
