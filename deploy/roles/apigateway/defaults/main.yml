@@ -1,3 +1,4 @@
 ---
 # defaults file for apigateway
 output_file: "variable-file.hmtl"
+jenkins_app_name: "simple-maven-app-ansible"
