@@ -5,9 +5,20 @@
 #  dest=/etc/ntp.conf mode=644 owner=root group=root
 #  register: install
 
-- name: Run a script with arguments (using 'cmd' parameter)
-  script:
-    cmd: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
-  register: install
+#- name: Run a script with arguments (using 'cmd' parameter)
+#  script:
+#    cmd: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
+#  register: install
 
-- debug: msg="{{ install.stdout }}"
+#- debug: msg="{{ install.stdout }}"
+
+- name: copy scripts to host
+  copy:
+    src: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh
+    dest: /tmp/info.sh
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- name: show file
+  cmd: ls -l /tmp
