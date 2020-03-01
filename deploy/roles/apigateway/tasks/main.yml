@@ -7,9 +7,12 @@
 
 - name: execute script
   script: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh ans-test.html
+  chdir: /home/vagrant
   args:
     creates: /home/vagrant/ans-test.html
   register: install
+  retries: 30
+  delay: 1
 
 #- debug: msg="{{ install.stdout }}"
 
