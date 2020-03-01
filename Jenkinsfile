@@ -13,7 +13,7 @@ pipeline {
                 sh 'ansible --version'
             }
         }
-        stage('ansible') {
+        stage('inventory') {
             steps {
                 sh 'ansible -m ping all -i .ansible/inventory.ini'
             }
