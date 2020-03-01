@@ -7,8 +7,8 @@
 
 - name: execute script
   script: /var/lib/jenkins/workspace/simple-maven-app-ansible/deploy/roles/apigateway/files/info.sh -f ans-test.html
-  #chdir: /home/vagrant
   args:
+    chdir: /home/vagrant
     creates: /home/vagrant/ans-test.html
   register: install
   retries: 30
